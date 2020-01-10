@@ -29,6 +29,6 @@ mongoose.connect("mongodb+srv://dbEndGem:dbEndGem@cluster0-b6wqj.mongodb.net/tes
 })
 
 
-app.listen(port, () =>{
+app.listen(PORT, () =>{
     console.log(`Server is running on port :${PORT}`);
 })
