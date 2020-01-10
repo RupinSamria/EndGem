@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 const coursesRouter = require('./routes/courses');
 const filesRouter = require('./routes/files');
 const downloadRouter = require('./routes/downloadfile');
@@ -18,8 +19,8 @@ app.use('/courses', coursesRouter);
 app.use('/files', filesRouter);
 app.use('/download', downloadRouter);
 
-const uri = process.env.ATLAS_URI;
-mongoose.connect( process.env.ATLAS_URI || 'mongodb://localhost/endgem' , { useNewUrlParser: true , useUnifiedTopology: true}, (error) =>{
+
+mongoose.connect( process.env.MONGODB_URI || 'mongodb://localhost/endgem' , { useNewUrlParser: true , useUnifiedTopology: true}, (error) =>{
     if(!error){
         console.log("Successfully connected to DataBase")
     }
