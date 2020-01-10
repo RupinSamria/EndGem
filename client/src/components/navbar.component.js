@@ -5,6 +5,13 @@ export default class Navbar extends Component {
     render() {
         return (
             <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+                      {/* <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
+        aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button> */}
+                
                 <Link to='/' className="navbar-brand">Home</Link>
                 <div className="collapase navbar-collapse">
                 <ul className="navbar-nav mr-auto">
