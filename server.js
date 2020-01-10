@@ -18,8 +18,8 @@ app.use('/courses', coursesRouter);
 app.use('/files', filesRouter);
 app.use('/download', downloadRouter);
 
-
-mongoose.connect("mongodb+srv://dbEndGem:dbEndGem@cluster0-b6wqj.mongodb.net/test?retryWrites=true&w=majority" , { useNewUrlParser: true , useUnifiedTopology: true}, (error) =>{
+const uri = process.env.ATLAS_URI;
+mongoose.connect( process.env.ATLAS_URI || 'mongodb://localhost/endgem' , { useNewUrlParser: true , useUnifiedTopology: true}, (error) =>{
     if(!error){
         console.log("Successfully connected to DataBase")
     }
@@ -27,6 +27,15 @@ mongoose.connect("mongodb+srv://dbEndGem:dbEndGem@cluster0-b6wqj.mongodb.net/tes
         console.log("Error in connecting Database : " + error)
     }
 })
+
+//for heruko deployment
+if (process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'));
+
+    app.get('*',(req,res) => {
+        res.sendFile(path.join(__dirname, 'client', 'built', 'index.html')); //relative path
+    });
+}
 
 
 app.listen(PORT, () =>{
