@@ -122,7 +122,7 @@ export default class AddFile extends Component {
                     </div>
                     <div className="custom-file">
                         <input type="file" className="custom-file-input" id="customFile" name="file" onChange={(e)=>this.onChange(e)}/>
-                        <label className="custom-file-label" htmlfor="customFile">{this.state.filename}</label>
+                        <label className="custom-file-label" htmlFor="customFile">{this.state.filename}</label>
                     </div>
                     <div className="form-group mt-3">
                         <label>No. of Downloads: </label>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 //import download from 'downloadjs';
+//import { response } from 'express';
+//import download from 'downloadjs';
 
 
 const File = props => (
@@ -9,15 +11,11 @@ const File = props => (
         <td> { props.file.fileName } </td>
         <td> { props.file.noOfDownloads } </td>
         <td>
-            {/* <Link to={"/edit/"+props.file._id}>edit</Link> */}
             <button type="button" className="btn btn-primary"  onClick={() => {props.downloadFile(props.file._id)}}>Download</button>
-            {/* <a href="/" onClick={() => {props.downloadFile(props.file._id)}}>Download</a> */}
         </td>
 
     </tr> 
 )
-
-//download(`${__dirname}/../../public/uploads/RupinSamria.pdf`);
 
 
 export default class FileList extends Component {
@@ -40,20 +38,20 @@ export default class FileList extends Component {
             })
     }
 
-    downloadFile(id) {
-        this.setState({
-            _id: this.state.id,
-            noOfDownloads: this.state.noOfDownloads + 1
-        },
-        () => {
-            axios.post('http://localhost:5000/download/'+id,{_id: this.state._id, noOfDownloads: this.state.noOfDownloads + 1})
-                //.then(res => download(`${__dirname}/../../public/uploads/${res.data.filename}`))
-                .then(res =>  console.log(res.data))
-        })
-               // {this.setState( {noOfDownloads: this.state.noOfDownloads + 1});
-            //})
 
-   }
+    downloadFile(id) {
+        this.setState((prevState, props) => ({
+            noOfDownloads: prevState.noOfDownloads +1
+        }))
+
+        axios
+            .patch(`http://localhost:5000/download/${id}`, {
+                noOfDownloads: this.state.files.noOfDownloads
+            })
+            .then(res => console.log(res))
+            .catch(err => console.error(err))
+
+    }
 
     fileList() {
         return this.state.files
