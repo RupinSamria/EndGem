@@ -20,8 +20,6 @@ app.use('/files', filesRouter);
 app.use('/download', downloadRouter);
 
 
-//mongoose.connect( process.env.ATLAS_URI || 'mongodb://localhost/endgem' , { useNewUrlParser: true , useUnifiedTopology: true}, (error) =>{
-//const uri = process.env.ATLAS_URI;    
 mongoose.connect('mongodb+srv://dbEndGem:dbEndGem@cluster0-3nqhe.mongodb.net/test?retryWrites=true&w=majority' , { useNewUrlParser: true , useUnifiedTopology: true}, (error) =>{
     if(!error){
         console.log("Successfully connected to DataBase")

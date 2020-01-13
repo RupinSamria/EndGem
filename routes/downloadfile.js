@@ -1,20 +1,15 @@
 const router = require('express').Router();
 let File = require('../models/file.model');
+//const download = require('download-file');
 const download = require('downloadjs');
-//const fs = require('fs');
+const http = require('http');
+const fs = require('fs');
 
-router.route('/:id').patch((req, res) => {
-    const noOfDownloads = req.body.noOfDownloads;
-    File.findById(req.params.id)
-        .then(
-            file => {
-            file.set(noOfDownloads,noOfDownloads),
-            file.save()
-                .then(res => console.log(file))
-                .catch(err => console.error(err))
-            })
-        .catch(err => console.error(err))     
 
+router.route('/:id').patch((req, res) => { 
+  let id = req.params.id;
+  let down = File.findOne({_id : id })
+  File.findOneAndUpdate({_id : id}, {$inc : {'down.noOfDownloads' : 1}})
 });
 
 
@@ -31,11 +26,30 @@ module.exports = router;
 
 
 
+// File.findById(req.params.id,()=>{
+//     //const filedownload = fs.createWriteStream()
+//     download(`${__dirname}/../client/public/uploads/${File.filename}`)
+// })
+//     .then(
+//         file => {
+        
+//         file.save()
+//             .then(res => console.log(file))
+//             .catch(err => console.error(err))
+//         })
+//     .catch(err => console.error(err))     
 
 
 
 
 
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////
 
 
 

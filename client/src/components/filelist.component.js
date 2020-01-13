@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-//import download from 'downloadjs';
-//import { response } from 'express';
-//import download from 'downloadjs';
-
 
 const File = props => (
     <tr>
@@ -46,7 +42,7 @@ export default class FileList extends Component {
 
         axios
             .patch(`http://localhost:5000/download/${id}`, {
-                noOfDownloads: this.state.files.noOfDownloads
+                id: this.state.files._id
             })
             .then(res => console.log(res))
             .catch(err => console.error(err))

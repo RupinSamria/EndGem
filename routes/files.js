@@ -50,7 +50,6 @@ router.route('/upload').post((req, res) => {
             return res.status(500).send(err);
         }
     })
-        //res.json({ fileName: upfile.name, filePath: `/uploads/${upfile.name}` })
     })
 
 
@@ -63,19 +62,5 @@ router.route('/:id').get((req, res) => {
 
 });
 
-// router.route('/update/:id').post((req, res) => {
-//     File.findById(req.params.id)
-//         .then(file => {
-//             // file.courseName = req.body.courseName;
-//             // file.fileName = req.body.fileName;
-//             file.noOfDownloads = file.noOfDownloads + 1;
-
-//             exercise.save()
-//                 .then(() => res.json('Updated!!!'))
-//                 .catch(err => res.status(400).json('Error: ' + err))
-//         })
-//         .catch(err => res.status(400).json('Error: ' + err));
-
-// });
 
 module.exports = router;
