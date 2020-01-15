@@ -4,7 +4,7 @@ A project for IMG Recruitment-2020
 # Live Site
 visit: https://endgem-rupin.herokuapp.com/
 
-# Local Installation
+# Local Installation(Recommended)
 1. npm install
 2. cd client
 3. npm install
